@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macaco</title>
+</head>
+<body>
+    <h1>Concepts</h1>
+    <h2>Stateful vs Stateless</h2>
+    <h3>Stateful</h3>
+    <p>An Stateful process allow clients/users to store, record, and return to <br>
+        already established information and processes over the internet
+    </p>
+        <h4>So, In stateful process, what the client/user can do with it?</h4>
+        <img src="../../../assets/imgs/statul_what_it_can_do.png" alt="" width="400px" height="400px">
+        <h4>But, whats the process actually storing or recording? **(there might be actions, preferences, etc...)</h4>
+        <img src="../../../assets/imgs/user_actions_stateful.png" alt="" width="1000px" height="400px">
+        <h4>In a stateful process, what whill happend if the user/client "lost connection"</h4> 
+        <img src="../../../assets/imgs/what_will_happen.png" alt="" width="1000px" height="400px">
+        <p>First, as we can see in the previous image, all user/client information is stored in the process
+            <br>
+            <strong>So, what will happen when the client/user reconnects to that process?</strong>
+            <br>
+            <br>
+            So in that case, whenever the user tries to reconnect to the process and try to get information <br>
+            about where he left off, the process will retrieve that information from its database, or txt file <br>
+            or whatever it is using for storing data, then it'll send it back to the client, so the client <br>
+            will be where he left off
+        </p>
+        <img src="../../../assets/imgs/not_losing.png" alt="" width="1000px", height="400px">
+
+        <h3>Stateless</h3>
+    <p>A stateless process does not retain information about 
+    the user's previous interactions.     
+    </p>
+    <br>
+
+    <p>
+        sources: <br>
+        <a href="">Stateful vs Stateless</a>
+        
+    </p>
+
+
+</body>
+</html>
