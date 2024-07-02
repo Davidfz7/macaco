@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Queries and things</title>
+</head>
+<body> 
+    <h1>SQL</h1>
+    <h2>SQL JOIN</h2>
+
+    <p>Let's create two tables to check how the SQL JOIN work <br>
+    but first we have to create the database(schema) that we are going to use for testing.
+    </p>
+
+    <pre><code>
+       CREATE DATABASE test;
+       use test; 
+    </code></pre>
+    <pre><code>
+        DROP TABLE IF exists customers;
+        CREATE TABLE customers(
+            customer_id INT PRIMARY KEY AUTO_INCREMENT,
+            customer_name VARCHAR(150) NOT NULL,
+            contact_name VARCHAR(150) NOT NULL,
+            country VARCHAR(150) NOT NULL
+        ) ENGINE = InnoDB
+        DEFAULT CHARACTER SET = utf8mb4;
+
+        DROP TABLE IF EXISTS orders;
+        CREATE TABLE orders(
+            order_id INT PRIMARY KEY AUTO_INCREMENT,
+            customer_id INT NOT NULL,
+            date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (customer_id) REFERENCES customers(customer_id)   
+        ) ENGINE = InnoDB
+        DEFAULT CHARACTER SET = utf8mb4;
+    </code></pre>
+
+    <p>
+        So now that we have created our tables, let's insert some data.
+    </p>
+    
+    <pre><code>
+        
+    </code></pre>
+
+</body>
+</html>
