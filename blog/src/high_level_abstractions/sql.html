@@ -7,16 +7,17 @@
 </head>
 <body> 
     <h1>SQL</h1>
-    <h2>SQL JOIN</h2>
+    <h2>How to use the SQL JOIN?</h2>
 
-    <p>Let's create two tables to check how the SQL JOIN work <br>
+    <p>Let's create two tables to check how the SQL JOIN works <br>
     but first we have to create the database(schema) that we are going to use for testing.
     </p>
 
     <pre><code>
-       CREATE DATABASE test;
-       use test; 
+       CREATE DATABASE restaurante;
+       use restaurante; 
     </code></pre>
+
     <pre><code>
         DROP TABLE IF exists customers;
         CREATE TABLE customers(
@@ -24,7 +25,7 @@
             customer_name VARCHAR(150) NOT NULL,
             contact_name VARCHAR(150) NOT NULL,
             country VARCHAR(150) NOT NULL
-        ) ENGINE = InnoDB
+        )ENGINE = InnoDB
         DEFAULT CHARACTER SET = utf8mb4;
 
         DROP TABLE IF EXISTS orders;
@@ -33,8 +34,10 @@
             customer_id INT NOT NULL,
             date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (customer_id) REFERENCES customers(customer_id)   
-        ) ENGINE = InnoDB
+        )ENGINE = InnoDB
         DEFAULT CHARACTER SET = utf8mb4;
+
+
     </code></pre>
 
     <p>
@@ -42,8 +45,80 @@
     </p>
     
     <pre><code>
-        
+        INSERT INTO customers(customer_name, contact_name, country) VALUES 
+        ('Alfreds Futterkiste', 'Maria Anders',  'Germany'),
+        ('Ana Trujillo Emparedados y helados', 'Ana Trujillo', 'Mexico'),
+        ('Antonio Moreno Taqueria', 'Antonio Moreno', 'Mexico');
+
+        INSERT INTO orders(customer_id) VALUES
+        (2);
     </code></pre>
 
+    <p>Before we use the JOIN statement, let me clarify a point, there are many types <br>
+    of JOINS, these are the different JOIN types that we can use:
+
+    </p>
+
+    <ul>
+    <li><code>(INNER) JOIN</code>: Returns records that have matching values in both tables</li>
+    <li><code>LEFT (OUTER) JOIN</code>: Returns all records from the left table, and the matched records from the right table</li>
+    <li><code>RIGHT (OUTER) JOIN</code>: Returns all records from the right table, and the matched 
+    records from the left table</li>
+    <li><code>FULL (OUTER) JOIN</code>: Returns all records when there is a match in either left 
+    or right table</li>
+
+</ul>
+
+    <p>For this first example we are going to use the '(INNER) JOIN', to see how it works</p>
+
+    <h3>INNER JOIN</h3>
+<pre><code>
+    SELECT orders.order_id, customers.customer_name, orders.order_date 
+    FROM Orders
+    INNER JOIN customers ON orders.customer_id=customers.customer_id;
+</code></pre>
+
+<p>To make it more readable let's read it like this:</p>
+<p>The first line is</p>
+<pre><code>
+    SELECT orders.order_id, customers.customer_name, orders.order_date 
+</code></pre>
+<p>In other words, what we are doing is the following: <br><br>
+"We are selecting the columns that we are going to return from this query, it means,<br>
+that the result from our query wil have those columns" <br> In that case we just selected the columns: <br><br>
+'order_id from the table orders', <br>
+'customer_name from the table customers' and <br>
+'order_date from the table orders'
+</p>
+
+<pre><code>
+    FROM orders
+</code></pre>
+
+<p>For the last sentence, what we are doing there, is just specifying from WHICH table are we going to get the values for the columns <br>
+that we selected <br><br> But as we can see we are only selecting one table, right? Thats not going to work because we specified that we wanted <br>
+to use the column 'customer_name' from the table customers, so it supposed to be two tables. <br> <br>
+
+So, the solution for that is just adding the following:
+</p>
+<pre><code>
+    INNER JOIN customers ON orders.customer_id=customers.customer_id;
+</code></pre>
+
+<p>With <code>INNER JOIN customers</code> we set the other table from where we are getting the data for the customer's column mentioned and <br> 
+as we already said, the <code>INNER JOIN</code> statements return entries/records from both table but only where they match a specify case, so <br>
+to specify that case we used the following: <br> <code>ON orders.customer_id=customers.customer_id</code>
+<br>
+<br>
+So, as a whole, what we are doing is just the following: <br>
+"We are selecting some columns from both tables, then, we say from where are we getting those columns, in this case is from orders and customers table, after that <br> 
+we select a specific case that the result from our query must follow and that case is just 'please return the records/entries where they match this statement', that statement <br> 
+is just return the records where the column customer_id in customers MATCH VALUES with the column customer_Id in orders" and then fill the columns that we select with those values
+</p>
+
+<h3>The result is going to be something like this:</h3>
+<img src="../../assets/imgs/inner_join.png">
+
+<h3>LEFT JOIN</h3>
 </body>
 </html>
