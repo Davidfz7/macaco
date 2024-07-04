@@ -120,5 +120,81 @@ is just return the records where the column customer_id in customers MATCH VALUE
 <img src="../../assets/imgs/inner_join.png">
 
 <h3>LEFT JOIN</h3>
+<p>
+    Returns all records from the left table, and the matched records from the right table
+</p>
+<pre><code>
+    SELECT customers.customer_name, orders.order_id
+    FROM customers
+    LEFT JOIN orders ON customers.customer_id=orders.customer_id;
+</code></pre>
+
+<p>
+    Comparing this statement with the above statement, we see that the only <br>
+    difference is the 'LEFT' keyword, in this case we're specifying the we will use <br>
+    the LEFT JOIN query <br> <br>
+    
+    Here we've the result from the recent query:
+</p>
+
+<img src="../../assets/imgs/left_join.png" alt="">
+
+<h3>RIGHT JOIN</h3>
+<p>
+Returns all records from the right table, and the matched records from the left table
+</p>
+<pre><code>
+   SELECT customers.customer_name, orders.order_id
+   FROM customers
+   RIGHT JOIN orders ON customers.customer_id=orders.customer_id;
+</code></pre>
+
+<p>
+Literally the same as the LEFT JOIN but replacing the keyword 'LEFT' for 'RIGHT' <br> <br>
+Here we have the result:    
+</p>
+<img src="../../assets/imgs/rigth_join.png" alt="">
+
+<h3>FULL JOIN(or FULL OUTER JOIN, is the same)</h3>
+<p>For this statement we only need one match for it to return all records</p>
+<pre>
+    <code>
+    SELECT customers.customer_name, orders.order_id
+    FROM customers
+    FULL JOIN orders ON customers.customer_id=orders.customer_id;
+    </code>
+</pre>
+
+<p>**We were using mysql for testing the queries, in this case is not possible because MYSQL does not fully support <br>
+the FULL JOIN statement.</p>
+
+<a href="https://www.geeksforgeeks.org/how-to-use-full-outer-join-in-mysql/"> Alternative for 'FULL JOIN' in mysql</a>
+
+
+<h2>How to use the SQL UNION?</h2>
+
+<p>The UNION keyword is used to combine two or more SELECT queries</p>
+
+<ul>
+  <li>Every <code>SELECT</code> statement within
+  <code>UNION</code> must have the same number 
+of columns</li>
+  <li>The columns must also have similar data types</li>
+  <li>The columns in 
+  every <code>SELECT</code> statement must also be in the same order</li>
+</ul>
+<p>Here we have an example:</p>
+<pre><code>
+    SELECT id_registro , asiento, 'activos' AS 'origen'
+    FROM activos
+    UNION
+    SELECT id_registro, asiento, 'observaciones' AS 'origen' FROM observaciones;
+</code></pre>
+
+<p>In this case we were using the database SGICA for testing this whole statement, as we can see <br>
+the two table combine with eachother so we don't have 6 columns, we only have 3, but these 3 columns will fill <br>
+its values with the values from these two tables, so there we have the combination.
+</p>
+<img src="../../assets/imgs/UNION.png" alt="">
 </body>
 </html>
